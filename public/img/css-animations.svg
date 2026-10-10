@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="50%" stop-color="#172a45"/>
+      <stop offset="100%" stop-color="#020c1b"/>
+    </linearGradient>
+    <linearGradient id="cssBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#264de4"/>
+      <stop offset="100%" stop-color="#2965f1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgGrad6)"/>
+
+  <!-- Code Cascade Layers Graphic -->
+  <g transform="translate(400, 190) scale(1.1)">
+    <!-- Layer 3 (Bottom) -->
+    <rect x="-110" y="-30" width="220" height="90" rx="12" fill="rgba(38,77,228,0.2)" stroke="#264de4" stroke-width="2" transform="rotate(-6)"/>
+    <!-- Layer 2 (Middle) -->
+    <rect x="-110" y="-45" width="220" height="90" rx="12" fill="rgba(6,182,212,0.3)" stroke="#06b6d4" stroke-width="2" transform="rotate(3)"/>
+    <!-- Layer 1 (Top) -->
+    <rect x="-110" y="-60" width="220" height="90" rx="12" fill="#002855" stroke="#38bdf8" stroke-width="3" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.5))"/>
+    
+    <text x="-90" y="-30" font-family="'Courier New', monospace" font-size="14" fill="#38bdf8">@layer components {</text>
+    <text x="-70" y="-10" font-family="'Courier New', monospace" font-size="14" fill="#a7f3d0">  view-transition: slide;</text>
+    <text x="-90" y="10" font-family="'Courier New', monospace" font-size="14" fill="#38bdf8">}</text>
+  </g>
+
+  <!-- Category Badge -->
+  <rect x="30" y="30" width="160" height="34" rx="17" fill="#002855" stroke="#38bdf8" stroke-width="2"/>
+  <text x="110" y="52" font-family="'Outfit', sans-serif" font-weight="700" font-size="13" fill="#7dd3fc" text-anchor="middle">DESARROLLO WEB</text>
+
+  <!-- Title Bottom Strip -->
+  <text x="400" y="415" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#f8fafc" text-anchor="middle">
+    CSS CASCADE LAYERS &amp; VIEW TRANSITIONS
+  </text>
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="flaskGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#002855"/>
+      <stop offset="100%" stop-color="#0f3b73"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- MATRAZ / LAB FLASK & CIRCUITOS -->
+  <g transform="translate(10, 5)">
+    <!-- Circuit Nodes (Left) -->
+    <circle cx="25" cy="40" r="7" fill="#06b6d4"/>
+    <line x1="25" y1="40" x2="48" y2="55" stroke="#002855" stroke-width="4" stroke-linecap="round"/>
+    
+    <circle cx="50" cy="55" r="8" fill="#06b6d4"/>
+    <line x1="50" y1="55" x2="25" y2="90" stroke="#002855" stroke-width="4" stroke-linecap="round"/>
+    
+    <circle cx="25" cy="90" r="7" fill="#06b6d4"/>
+    <line x1="50" y1="55" x2="72" y2="35" stroke="#002855" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="72" cy="35" r="8" fill="#06b6d4"/>
+
+    <!-- Matraz Outline -->
+    <path d="M 75 25 L 115 25 M 82 25 L 82 45 L 50 115 C 45 125 52 135 65 135 L 125 135 C 138 135 145 125 140 115 L 108 45 L 108 25" 
+          fill="none" stroke="#002855" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Bubbles inside flask -->
+    <circle cx="72" cy="115" r="4" fill="#ffffff"/>
+    <circle cx="85" cy="122" r="3" fill="#ffffff"/>
+    <circle cx="90" cy="108" r="5" fill="#ffffff"/>
+
+    <!-- Microchip (Center overlay) -->
+    <rect x="75" y="65" width="40" height="40" rx="6" fill="#06b6d4" stroke="#002855" stroke-width="4"/>
+    <rect x="83" y="73" width="24" height="24" rx="3" fill="#38bdf8"/>
+    
+    <!-- Chip Pins (Left & Right) -->
+    <line x1="65" y1="73" x2="75" y2="73" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="65" y1="81" x2="75" y2="81" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="65" y1="89" x2="75" y2="89" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="65" y1="97" x2="75" y2="97" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+
+    <line x1="115" y1="73" x2="125" y2="73" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="115" y1="81" x2="125" y2="81" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="115" y1="89" x2="125" y2="89" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="115" y1="97" x2="125" y2="97" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Circuit Nodes (Right & Bottom) -->
+    <path d="M 95 105 L 95 125 L 115 125" fill="none" stroke="#06b6d4" stroke-width="3"/>
+    <circle cx="115" cy="125" r="5" fill="#06b6d4"/>
+
+    <path d="M 120 65 L 135 50" fill="none" stroke="#06b6d4" stroke-width="3"/>
+    <circle cx="135" cy="50" r="5" fill="#06b6d4"/>
+
+    <path d="M 125 85 L 145 85 L 145 105" fill="none" stroke="#06b6d4" stroke-width="3"/>
+    <circle cx="145" cy="105" r="5" fill="#06b6d4"/>
+  </g>
+
+  <!-- TEXTO TIPOGRÁFICO OFICIAL -->
+  <!-- TECH & LAB -->
+  <text x="160" y="80" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="900" font-size="52" fill="#002855" letter-spacing="-1">
+    TECH<tspan fill="#06b6d4">&amp;</tspan>LAB
+  </text>
+  
+  <!-- NOTICIAS TECNOLÓGICAS -->
+  <text x="162" y="112" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="700" font-size="20" fill="#002855" letter-spacing="3.5">
+    NOTICIAS TECNOLÓGICAS
+  </text>
+</svg>

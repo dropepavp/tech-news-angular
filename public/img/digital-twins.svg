@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0a3e"/>
+      <stop offset="50%" stop-color="#191970"/>
+      <stop offset="100%" stop-color="#050522"/>
+    </linearGradient>
+    <linearGradient id="arGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgGrad5)"/>
+
+  <!-- Perspective 3D Grid Matrix -->
+  <g stroke="#06b6d4" stroke-width="1" opacity="0.3">
+    <line x1="400" y1="200" x2="0" y2="450"/>
+    <line x1="400" y1="200" x2="160" y2="450"/>
+    <line x1="400" y1="200" x2="320" y2="450"/>
+    <line x1="400" y1="200" x2="480" y2="450"/>
+    <line x1="400" y1="200" x2="640" y2="450"/>
+    <line x1="400" y1="200" x2="800" y2="450"/>
+    
+    <line x1="100" y1="380" x2="700" y2="380"/>
+    <line x1="200" y1="320" x2="600" y2="320"/>
+    <line x1="300" y1="260" x2="500" y2="260"/>
+  </g>
+
+  <!-- AR Glasses / Virtual Hologram Wireframe -->
+  <g transform="translate(400, 190) scale(1.1)">
+    <!-- 3D Cube Wireframe (Digital Twin) -->
+    <polygon points="0,-70 60,-35 0,0 -60,-35" fill="none" stroke="#06b6d4" stroke-width="3"/>
+    <polygon points="-60,-35 0,0 0,70 -60,35" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="3"/>
+    <polygon points="0,0 60,-35 60,35 0,70" fill="rgba(56,189,248,0.25)" stroke="#06b6d4" stroke-width="3"/>
+    
+    <!-- Hologram scan laser beam -->
+    <line x1="-120" y1="10" x2="120" y2="10" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 4" filter="drop-shadow(0 0 10px #f43f5e)"/>
+    <text x="0" y="95" font-family="'Outfit', sans-serif" font-weight="800" font-size="14" fill="#fb7185" text-anchor="middle">LiDAR 3D SCAN</text>
+  </g>
+
+  <!-- Category Badge -->
+  <rect x="30" y="30" width="180" height="34" rx="17" fill="#002855" stroke="#fb7185" stroke-width="2"/>
+  <text x="120" y="52" font-family="'Outfit', sans-serif" font-weight="700" font-size="13" fill="#fda4af" text-anchor="middle">EXPERIENCIAS TECH</text>
+
+  <!-- Title Bottom Strip -->
+  <text x="400" y="415" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#f8fafc" text-anchor="middle">
+    GEMELOS DIGITALES &amp; REALIDAD AUMENTADA
+  </text>
+</svg>

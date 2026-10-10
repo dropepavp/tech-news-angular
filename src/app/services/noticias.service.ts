@@ -1,0 +1,188 @@
+import { Injectable, signal, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Noticia } from '../models/noticia.model';
+
+const STORAGE_KEY = 'tech_news_data_v3';
+
+export const DEFAULT_NOTICIAS: Noticia[] = [
+  {
+    id: 1,
+    cat: 'Cloud & DevOps',
+    title: 'Migración de microservicios: Cómo optimizar respuestas sin morir en el intento',
+    desc: 'Exploramos cómo un equipo de desarrollo redujo en un 40% el uso de memoria cambiando tablas estáticas por arquitecturas reactivas.',
+    author: 'Ing. Sofía Martínez',
+    date: '24 Sep 2026',
+    readTime: '5 min',
+    image: 'img/microservices-architecture.svg',
+    featured: true,
+    content: 'La transición desde monolitos hacia microservicios desacoplados introduce desafíos críticos en concurrencia y latencia de red. En este caso de estudio del laboratorio, evaluamos cómo la incorporación de patrones de comunicación asíncrona mediante WebSockets y enrutamiento con API Gateway redujo el tiempo de respuesta en un 40% y optimizó el uso de memoria en un 50% en clústeres Kubernetes de alta demanda.'
+  },
+  {
+    id: 2,
+    cat: 'Inteligencia Artificial',
+    title: 'Modelos de Razonamiento y LLMs Autónomos en Producción',
+    desc: 'Patrones modernos para orquestación de agentes con validación semántica y caché inteligente.',
+    author: 'Dr. Carlos Valenzuela',
+    date: '22 Sep 2026',
+    readTime: '7 min',
+    image: 'img/ai-apis.svg',
+    featured: true,
+    content: 'La integración de modelos de lenguaje en pipelines empresariales ha dejado de ser un experimento para convertirse en infraestructura crítica. Los nuevos esquemas de agentes autónomos combinan llamadas a herramientas externas (Tool Calling), memoria vectorial distribuida y capas de sanitización de prompts. Analizamos cómo arquitecturar sistemas tolerantes a fallos donde la latencia se amortiza mediante streaming SSE y compresión de embeddings en memoria.'
+  },
+  {
+    id: 3,
+    cat: 'Ciberseguridad',
+    title: 'Zero Trust en Infraestructuras Híbridas y Edge Computing',
+    desc: 'Estrategias de autenticación continua y segmentación dinámica ante amenazas avanzadas.',
+    author: 'MSc. Andrea Rivas',
+    date: '20 Sep 2026',
+    readTime: '6 min',
+    image: 'img/cybersecurity-zerotrust.svg',
+    featured: true,
+    content: 'El perímetro tradicional de seguridad ha desaparecido. El modelo Zero Trust («nunca confíes, siempre verifica») exige validación criptográfica en cada microservicio y canal de datos. Revisamos la implementación de mTLS universal, tokens efímeros JWT con rotación asimétrica y detección de anomalías en tiempo real con algoritmos de grafos sobre nodos Kubernetes distribuidos.'
+  },
+  {
+    id: 4,
+    cat: 'Cloud & DevOps',
+    title: 'Kubernetes Multi-Región y Serverless con WebAssembly',
+    desc: 'El futuro de los microservicios ultraligeros con arranque en milisegundos y portabilidad universal.',
+    author: 'Lic. Alejandro Mendoza',
+    date: '18 Sep 2026',
+    readTime: '4 min',
+    image: 'img/cloud-wasm.svg',
+    featured: false,
+    content: 'WebAssembly (WASM) está transformando el cómputo en la nube al ofrecer contenedores binarios con tiempos de arranque menores a 5 milisegundos y un aislamiento de memoria seguro por diseño. En entornos multi-cloud, permite desplegar funciones de cómputo perimetral en cientos de ubicaciones geográficas reduciendo costos de transferencia y optimizando la entrega de contenido a escala global.'
+  },
+  {
+    id: 5,
+    cat: 'Experiencias Tech',
+    title: 'Gemelos Digitales y Turismo de Realidad Aumentada',
+    desc: 'Cómo las ciudades inteligentes están digitalizando monumentos históricos para experiencias inmersivas.',
+    author: 'Arq. Valentina Gómez',
+    date: '15 Sep 2026',
+    readTime: '5 min',
+    image: 'img/digital-twins.svg',
+    featured: false,
+    content: 'La convergencia de fotogrametría de alta fidelidad, escaneo LiDAR y motores gráficos en tiempo real en la web (WebGPU) ha permitido reconstruir digitalmente sitios arqueológicos y centros urbanos. Los usuarios pueden recorrer réplicas interactivas en 3D con guías impulsadas por audio espacial e IA conversacional multilingüe.'
+  },
+  {
+    id: 6,
+    cat: 'Desarrollo Web',
+    title: 'CSS Cascade Layers y Nuevas APIs de Animación en el Navegador',
+    desc: 'Técnicas avanzadas para sistemas de diseño modulares, View Transitions y performance de interfaz.',
+    author: 'Ing. Julián Castro',
+    date: '12 Sep 2026',
+    readTime: '4 min',
+    image: 'img/css-animations.svg',
+    featured: false,
+    content: 'La evolución de CSS nativo está reemplazando bibliotecas de utilidades complejas. Con @layer, @container queries y la API de View Transitions, los desarrolladores pueden crear transiciones de página fluidas sin frameworks pesados, garantizando accesibilidad y un puntaje óptimo en Core Web Vitals.'
+  }
+];
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NoticiasService {
+  private http = inject(HttpClient);
+  readonly noticias = signal<Noticia[]>([]);
+  readonly cargando = signal<boolean>(true);
+
+  constructor() {
+    this.cargarNoticias();
+  }
+
+  cargarNoticias(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            this.noticias.set(parsed);
+            this.cargando.set(false);
+            return;
+          }
+        } catch (e) {
+          console.error('Error parseando noticias desde localStorage', e);
+        }
+      }
+    }
+
+    this.http.get<Noticia[]>('noticias.json').subscribe({
+      next: (data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          this.noticias.set(data);
+          this.guardarEnStorage(data);
+        } else {
+          this.noticias.set(DEFAULT_NOTICIAS);
+          this.guardarEnStorage(DEFAULT_NOTICIAS);
+        }
+        this.cargando.set(false);
+      },
+      error: () => {
+        this.noticias.set(DEFAULT_NOTICIAS);
+        this.guardarEnStorage(DEFAULT_NOTICIAS);
+        this.cargando.set(false);
+      }
+    });
+  }
+
+  private guardarEnStorage(lista: Noticia[]): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+      } catch (e) {
+        console.error('Error guardando en localStorage', e);
+      }
+    }
+  }
+
+  getNoticiaById(id: number): Noticia | undefined {
+    return this.noticias().find(n => n.id === id);
+  }
+
+  getDestacadas(): Noticia[] {
+    return this.noticias().filter(n => n.featured);
+  }
+
+  getHero(): Noticia | undefined {
+    return this.noticias().find(n => n.featured) || this.noticias()[0];
+  }
+
+  getRelacionadas(categoria: string, excludeId: number, limite = 3): Noticia[] {
+    const list = this.noticias().filter(n => n.id !== excludeId);
+    const sameCat = list.filter(n => n.cat === categoria);
+    if (sameCat.length >= limite) {
+      return sameCat.slice(0, limite);
+    }
+    const otherCat = list.filter(n => n.cat !== categoria);
+    return [...sameCat, ...otherCat].slice(0, limite);
+  }
+
+  agregarNoticia(datos: Omit<Noticia, 'id'>): Noticia {
+    const current = this.noticias();
+    const nextId = current.length > 0 ? Math.max(...current.map(n => n.id)) + 1 : 1;
+    const nueva: Noticia = {
+      ...datos,
+      id: nextId
+    };
+    const actualizada = [nueva, ...current];
+    this.noticias.set(actualizada);
+    this.guardarEnStorage(actualizada);
+    return nueva;
+  }
+
+  eliminarNoticia(id: number): boolean {
+    const current = this.noticias();
+    const filtrada = current.filter(n => n.id !== id);
+    if (filtrada.length === current.length) return false;
+    this.noticias.set(filtrada);
+    this.guardarEnStorage(filtrada);
+    return true;
+  }
+
+  restaurarDatosIniciales(): void {
+    this.noticias.set(DEFAULT_NOTICIAS);
+    this.guardarEnStorage(DEFAULT_NOTICIAS);
+  }
+}

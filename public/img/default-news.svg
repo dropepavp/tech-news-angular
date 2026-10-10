@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradDef" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#002855"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#002855"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgGradDef)"/>
+
+  <!-- Logo symbol in center -->
+  <g transform="translate(400, 200) scale(1.4)">
+    <!-- Circuit lines -->
+    <circle cx="-60" cy="-30" r="8" fill="#06b6d4"/>
+    <line x1="-60" y1="-30" x2="-20" y2="0" stroke="#06b6d4" stroke-width="3"/>
+    
+    <!-- Chip -->
+    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="#002855" stroke="#06b6d4" stroke-width="3"/>
+    <text x="0" y="8" font-family="'Outfit', sans-serif" font-weight="900" font-size="20" fill="#38bdf8" text-anchor="middle">{ &amp; }</text>
+
+    <circle cx="60" cy="30" r="8" fill="#06b6d4"/>
+    <line x1="30" y1="0" x2="60" y2="30" stroke="#06b6d4" stroke-width="3"/>
+  </g>
+
+  <!-- Title Bottom Strip -->
+  <text x="400" y="380" font-family="'Outfit', sans-serif" font-weight="800" font-size="24" fill="#ffffff" text-anchor="middle">
+    TECH &amp; LAB • NOTICIAS TECNOLÓGICAS
+  </text>
+  <text x="400" y="410" font-family="'Outfit', sans-serif" font-weight="600" font-size="14" fill="#93c5fd" text-anchor="middle">
+    LABORATORIO DIGITAL
+  </text>
+</svg>
