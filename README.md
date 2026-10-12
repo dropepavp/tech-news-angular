@@ -168,11 +168,15 @@ tech-New-angular/
 ---
 
 ## 👥 Autores y Créditos
-- **Proyecto:** Tech News & Lab
-- Desarrollo y Despliegue de Aplicación Web Front-End en Angular: Portal de Noticias "Tech News & Lab"
+
+**Proyecto:** Tech News & Lab  
+*Desarrollo y Despliegue de Aplicación Web Front-End en Angular: Portal de Noticias "Tech News & Lab"*
+
 - **Módulo:** Front-End Development — Angular
-- **Tecnologías:** Angular, TypeScript, HTML5, CSS3 Moderno, Angular Signals.
+- **Tecnologías:** Angular, TypeScript, HTML5, CSS3 Moderno, Angular Signals
+
+### Desarrolladores / Equipo
 - Sonia Homez Homez
--Santiago Isaza Lema
--Pedro Alejandro Varela Pinzón
+- Santiago Isaza Lema
+- Pedro Alejandro Varela Pinzón
 
